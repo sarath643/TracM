@@ -27,8 +27,16 @@ export const validateField = (name: string, value: string) => {
     case 'password':
       error = isEmptyValue(value, name);
       if (!error) {
-        error = value.length < 4 ? 'Password must be at least 4 characters' : '';
+        error = value.length < 6 ? 'Password must be at least 6 characters' : '';
       }
+      break;
+
+    case 'fullName':
+      error = isEmptyValue(value, name);
+      break;
+
+    case 'profession':
+      error = isEmptyValue(value, name);
       break;
   }
 

@@ -100,7 +100,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
             className='relative w-full h-10 text-white sm:w-fit'>
             Continue
             {isloading && (
-              <CustomRotatingLoader className={'left-[calc(60%-10px)] sm:left-0 right-0'} />
+              <CustomRotatingLoader className={'left-[calc(65%-16px)] sm:left-auto   right-0'} />
             )}
           </Button>
         </div>

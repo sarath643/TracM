@@ -40,3 +40,15 @@ body {
 p {
   @apply dark:text-white text-blackT;
 }
+
+.dark input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px rgb(26 32 44) inset !important;
+  -webkit-text-fill-color: white !important; /* Adjust to your desired text color */
+  @apply focus-visible:!ring-greenT;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px rgb(229 231 235) inset !important;
+  -webkit-text-fill-color: black !important; /* Adjust to your desired text color */
+  @apply focus-visible:!ring-greenT;
+}

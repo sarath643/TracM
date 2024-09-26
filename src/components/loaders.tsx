@@ -12,7 +12,10 @@ export const CustomDotLoader: React.FC<CustomLoaderProps> = ({ numberOfDots, cla
       {Array.from({ length: numberOfDots ?? 3 }, (_, i) => (
         <div
           key={i}
-          className={cn(className, `bg-greeT/80 animate-ping  md:w-1.5 md:h-1.5 rounded-full`)}
+          className={cn(
+            className,
+            `bg-greenT/80 dark:bg-greenT/80 animate-ping md:w-1.5 md:h-1.5 rounded-full`
+          )}
           style={{ animationDelay: `${i * 100}ms` }}></div>
       ))}
     </div>

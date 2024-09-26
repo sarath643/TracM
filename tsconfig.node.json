@@ -12,11 +12,9 @@
     "moduleDetection": "force",
     "noEmit": true,
 
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["components/*"],
-      "@styles/*": ["styles/*"]
+      "@/*": ["./src/*"]
     },
 
     /* Linting */

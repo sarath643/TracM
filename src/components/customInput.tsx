@@ -61,10 +61,10 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
             <input
               type={type}
               className={cn(
-                `flex h-12 text-sm w-full dark:border-gray-700 text-blackT  dark:text-white rounded-md dark:border bg-gray-200 dark:bg-blackT  px-3 py-1
+                `flex h-10 text-sm w-full dark:border-gray-700 text-blackT  dark:text-white rounded-md dark:border bg-gray-200 dark:bg-blackT  px-3 py-1
                     file:border-0 file:bg-transparent file:text-sm file:font-medium dark:placeholder:text-lightT placeholder:text-blackT/40
                     focus-visible:outline-none focus-visible:ring-[2px]  focus-visible:ring-greenT
-                    disabled:cursor-not-allowed disabled:opacity-50
+                    disabled:cursor-not-allowed disabled:opacity-50 
                     group-hover/input:shadow-none group-hover/input:border-[.2px] transition duration-400`,
                 className
               )}
@@ -74,7 +74,9 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
           </motion.div>
 
           <div className='h-5 '>
-            {props.error && <p className='text-sm text-red-500 '>{props.error}</p>}
+            {props.error && (
+              <p className='ml-1 text-sm text-red-500 dark:text-red-500 '>{props.error}</p>
+            )}
           </div>
         </div>
       </div>
