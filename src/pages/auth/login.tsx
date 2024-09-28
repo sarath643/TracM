@@ -45,8 +45,11 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
   });
 
   const [apiError, setApiError] = useState<string>('');
+  const [googleError, setGoogleError] = useState<string>('');
 
   const handleGoogleSignIn = async () => {
+    setApiError('');
+    setGoogleError('');
     try {
       await setPersistence(auth, browserLocalPersistence);
       const provider = new GoogleAuthProvider();
@@ -54,7 +57,7 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
       const user = result.user;
       console.log('User signed in:', user);
     } catch (error) {
-      setApiError((error as Error)?.message);
+      setGoogleError((error as Error)?.message);
       console.error('Error signing in with Google:', error);
     }
   };
@@ -65,6 +68,7 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setApiError('');
+    setGoogleError('');
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
@@ -87,6 +91,8 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
     setTriggerSubmit(true);
+    setGoogleError('');
+    setApiError('');
     event.preventDefault();
 
     const newErrors: { [key: string]: string } = {};
@@ -168,7 +174,7 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
             </span>
           )}
         </div>
-        <div className=' ml-1 min-h-[1rem]'>
+        <div className='ml-1 min-h-1'>
           <p className='text-sm text-red-500 dark:text-red-500 '>{apiError}</p>
         </div>
 
@@ -186,6 +192,10 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
           <Separator orientation='horizontal' className='text-sm '>
             or
           </Separator>
+        </div>
+
+        <div className='ml-1 '>
+          <p className='text-sm text-red-500 dark:text-red-500 '>{googleError}</p>
         </div>
 
         <Button

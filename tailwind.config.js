@@ -1,4 +1,9 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
+const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
+
 export default {
   content: [
     './index.html',
@@ -29,6 +34,8 @@ export default {
         'caret-blink': 'caret-blink 1.25s ease-out infinite',
         'draw-circle': 'drawCircle 1s ease-in-out forwards',
         'draw-check': 'drawCheck 0.5s ease-in-out forwards 0.9s',
+
+        shimmer: 'shimmer 5s linear infinite',
       },
       keyframes: {
         meteor: {
@@ -91,6 +98,14 @@ export default {
         drawCheck: {
           '0%': { strokeDasharray: '0 60', opacity: 0 },
           '100%': { strokeDasharray: '60 60', opacity: 1 },
+        },
+        shimmer: {
+          from: {
+            backgroundPosition: '0 0',
+          },
+          to: {
+            backgroundPosition: '-200% 0',
+          },
         },
       },
     },
@@ -1063,5 +1078,16 @@ export default {
     },
   },
 
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), addVariablesForColors],
 };
+
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme('colors'));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ':root': newVars,
+  });
+}

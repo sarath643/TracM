@@ -62,7 +62,7 @@ const Footer: React.FC<FooterProps> = ({ isComplete }) => {
   return (
     <div className='relative'>
       <footer className='flex items-center justify-center w-screen h-10 px-10 bg-gray-100 sm:h-12 sm:justify-end dark:bg-gray-900'>
-        <p className='text-sm text-gray-500 dark:text-gray-400'>
+        <p className='text-xs text-gray-500 sm:text-sm dark:text-gray-400'>
           &copy;
           {new Date().getFullYear()} TracM. All rights reserved.
         </p>

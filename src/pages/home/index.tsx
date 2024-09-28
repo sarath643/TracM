@@ -10,6 +10,9 @@ import { useIncomeExpenseStore } from '@/store/dataStore';
 import { auth, db } from '@/firebase/config';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import CustomToast from '@/components/customToast';
+import SummaryCards from './summaryCards';
+import { RingButton } from '@/components/movingBorder';
+import { useNavigate } from 'react-router-dom';
 
 type EntryType = 'income' | 'expense';
 type Period = 'day' | 'week' | 'month' | 'year';
@@ -17,7 +20,7 @@ export type TimeFilter = { id: number; label: Period };
 type SortField = 'category' | 'date' | 'amount';
 type SortDirection = 'asc' | 'desc';
 
-interface Entry {
+export interface Entry {
   id: string;
   date: string;
   type: EntryType;
@@ -56,6 +59,8 @@ const Dashboard: React.FC = () => {
   const [deleteEntryId, setDeleteEntryId] = useState<string | null>(null);
   const [addModalOpen, setAddModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetchEntries();
@@ -71,6 +76,29 @@ const Dashboard: React.FC = () => {
     setEntries(entryData);
     return () => {};
   }, [entryData]);
+
+  const filteredEntries = useMemo(() => {
+    return entries.filter((entry) => {
+      const entryDate = new Date(entry?.date);
+      const now = new Date();
+      switch (timeFilter.label) {
+        case 'day':
+          return entryDate.toDateString() === now.toDateString();
+        case 'week': {
+          const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+          return entryDate >= weekAgo;
+        }
+        case 'month':
+          return (
+            entryDate.getMonth() === now.getMonth() && entryDate.getFullYear() === now.getFullYear()
+          );
+        case 'year':
+          return entryDate.getFullYear() === now.getFullYear();
+        default:
+          return true;
+      }
+    });
+  }, [entries, timeFilter]);
 
   const filteredAndSortedEntries = useMemo(() => {
     return entries
@@ -139,15 +167,35 @@ const Dashboard: React.FC = () => {
     }
   };
 
+  const handleGenerateReport = () => {
+    if (entryData.length >= 5) {
+      navigate('/report');
+    } else {
+      CustomToast('Please add atleast 5 entries to generate report', 'error');
+    }
+  };
+
   return (
-    <div className='relative flex min-h-screen pt-24 w-screeen'>
+    <div className='relative flex min-h-screen pt-16 pb-10 sm:pt-24 w-screeen'>
       <div className='w-full mx-auto space-y-4 transition-colors duration-200 bg-white max-w-7xl dark:bg-black '>
         <div className='p-4 text-gray-900 dark:text-white'>
-          <h1 className='mb-4 text-2xl font-bold'>Income and Expense Overview</h1>
+          <SummaryCards transactions={filteredEntries} filter={timeFilter.label} />
+
+          <div className='flex justify-center w-full mt-4'>
+            <RingButton
+              onClick={handleGenerateReport}
+              borderRadius='1rem'
+              className='h-12 text-black bg-white dark:bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800'>
+              Generate AI Report
+            </RingButton>
+          </div>
+
+          <h1 className='my-5 text-xl font-bold sm:text-2xl'>Income and Expense Overview </h1>
+
           {entryData && entryData.length > 0 ? (
             <>
               <div className='mb-4 space-y-2'>
-                <div className='flex space-x-4'>
+                <div className='flex mb-4 space-x-4'>
                   <CustomCheckbox label='Income' enabled={showIncome} setEnabled={setShowIncome} />
                   <CustomCheckbox
                     label='Expense'
@@ -189,13 +237,15 @@ const Dashboard: React.FC = () => {
                           <span className='hidden sm:block'>Category</span>
                           <span className='text-left sm:hidden'>Category & Date</span>
                           <span className='w-4'>
-                            {window?.innerWidth <= 640 &&
-                              sortField === 'date' &&
-                              (sortDirection === 'asc' ? (
-                                <MoveUp className='w-4 h-4' />
-                              ) : (
+                            {window?.innerWidth <= 640 && sortField === 'date' ? (
+                              sortDirection === 'asc' ? (
                                 <MoveDown className='w-4 h-4' />
-                              ))}
+                              ) : (
+                                <MoveUp className='w-4 h-4' />
+                              )
+                            ) : (
+                              <ChevronsUpDown className='w-4 h-4' />
+                            )}
                           </span>
                         </button>
                       </th>
@@ -240,48 +290,58 @@ const Dashboard: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredAndSortedEntries.map((entry) => (
-                      <tr key={entry?.id} className='border-b border-gray-200 dark:border-gray-700'>
-                        <td className='px-4 py-4'>
-                          <div className='font-medium'>{entry?.category}</div>
-                          <div className='text-sm text-gray-500 dark:text-gray-400 sm:hidden'>
-                            {entry?.date}
-                          </div>
-                        </td>
-                        <td className='hidden px-4 py-2 sm:table-cell'>
-                          <div className='flex items-center justify-center space-x-1'>
-                            {entry?.date}
-                          </div>
-                        </td>
-                        <td
-                          className={`px-4 py-4 text-right ${
-                            entry?.type === 'income'
-                              ? 'text-green-700 dark:text-green-600'
-                              : 'text-red-700 dark:text-red-600'
-                          }`}>
-                          <div className='flex items-center justify-end space-x-1 sm:justify-center'>
-                            {entry?.type === 'income' ? (
-                              <Plus className='w-4 h-4' />
-                            ) : (
-                              <Minus className='w-4 h-4' />
-                            )}
-                            <span>
-                              ₹
-                              {typeof entry?.amount === 'number'
-                                ? entry.amount.toFixed(2)
-                                : entry?.amount}
-                            </span>
-                          </div>
-                        </td>
-                        <td className='w-10 px-2 py-4'>
-                          <button
-                            onClick={() => handleDelete(entry?.id)}
-                            className='text-gray-500  hover:text-red-600'>
-                            <Trash2 className='w-4 h-4 sm:w-5 sm:h-5' />
-                          </button>
+                    {filteredAndSortedEntries.length > 0 ? (
+                      filteredAndSortedEntries.map((entry) => (
+                        <tr
+                          key={entry?.id}
+                          className='border-b border-gray-200 dark:border-gray-700'>
+                          <td className='px-4 py-4'>
+                            <div className='font-medium'>{entry?.category}</div>
+                            <div className='text-sm text-gray-500 dark:text-gray-400 sm:hidden'>
+                              {entry?.date}
+                            </div>
+                          </td>
+                          <td className='hidden px-4 py-2 sm:table-cell'>
+                            <div className='flex items-center justify-center space-x-1'>
+                              {entry?.date}
+                            </div>
+                          </td>
+                          <td
+                            className={`px-4 py-4 text-right ${
+                              entry?.type === 'income'
+                                ? 'text-green-700 dark:text-green-600'
+                                : 'text-red-700 dark:text-red-600'
+                            }`}>
+                            <div className='flex items-center justify-end space-x-1 sm:justify-center'>
+                              {entry?.type === 'income' ? (
+                                <Plus className='w-4 h-4' />
+                              ) : (
+                                <Minus className='w-4 h-4' />
+                              )}
+                              <span>
+                                ₹
+                                {typeof entry?.amount === 'number'
+                                  ? entry.amount.toFixed(2)
+                                  : entry?.amount}
+                              </span>
+                            </div>
+                          </td>
+                          <td className='w-10 px-2 py-4'>
+                            <button
+                              onClick={() => handleDelete(entry?.id)}
+                              className='text-gray-500 hover:text-red-600'>
+                              <Trash2 className='w-4 h-4 sm:w-5 sm:h-5' />
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={4} className='py-20 text-center'>
+                          <p className='text-gray-500 dark:text-gray-400'>No entries to display</p>
                         </td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>

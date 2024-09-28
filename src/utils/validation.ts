@@ -68,3 +68,34 @@ export const validateEntryFields = (name: string, value: string | number) => {
   }
   return error;
 };
+
+export const refactorTextContent = (text: string): string => {
+  // Ignore the text '**'
+  if (text === '**') {
+    return '';
+  }
+  // Remove the text '****\n\n'
+  text = text.replace(/'\*\*\*\*\n\n'/g, '');
+
+  // Ignore the text '**'
+  text = text.replace(/\*\*/g, '');
+
+  // Make text inside '**' and ':**' bold
+  text = text.replace(/\*\*(.*?)\*\*:/g, '<b>$1</b>:');
+
+  // Correct common errors (example: double spaces)
+  text = text.replace(/\s\s+/g, ' ');
+
+  // Standardize formatting (example: capitalize first letter of each sentence)
+  text = text.replace(/(^\w|\.\s*\w)/g, (c) => c.toUpperCase());
+
+  // Sanitize input to prevent XSS attacks
+  const sanitizeHtml = (str: string) => {
+    const tempDiv = document.createElement('div');
+    tempDiv.textContent = str;
+    return tempDiv.innerHTML;
+  };
+  text = sanitizeHtml(text);
+
+  return text;
+};

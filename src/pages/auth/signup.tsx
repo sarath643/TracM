@@ -22,6 +22,8 @@ const SignUp: React.FC<SignupProps> = ({ onSwitch }) => {
 
   const handleSignUpForm = async (values: ISignUpvalues) => {
     setIsLoading(true);
+    setError('');
+    setFormApiError('');
     console.log(values, 'values');
     try {
       const { email, password, fullName, profession } = values;
@@ -82,12 +84,10 @@ const SignUp: React.FC<SignupProps> = ({ onSwitch }) => {
   };
 
   return (
-    <div className='mb-6 space-y-4 '>
+    <div className='mt-10 mb-6 space-y-4 '>
       <h2 className='text-2xl font-bold text-center text-gray-900 dark:text-white'>Sign Up</h2>
 
       <SignupForm handleSignUpForm={handleSignUpForm} isLoading={isloading} error={formApiError} />
-
-      <p className='text-sm text-red-500 dark:text-red-500 '>{error}</p>
 
       <div className=''>
         <Seperator orientation='horizontal' className='text-sm '>
@@ -104,9 +104,9 @@ const SignUp: React.FC<SignupProps> = ({ onSwitch }) => {
         <span>Sign Up with Google</span>
       </Button>
 
-      {error && <p className='my-6 text-sm text-red-500 dark:text-red-500 '>{error}</p>}
+      <p className='text-sm text-red-500 dark:text-red-500 '>{error}</p>
 
-      <div className='pt-5'>
+      <div className='pt-2'>
         <div className='flex items-center justify-end gap-2 text-sm text-right'>
           <p> Already have an account?</p>
 

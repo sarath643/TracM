@@ -52,3 +52,26 @@ input:-webkit-autofill {
   -webkit-text-fill-color: black !important; /* Adjust to your desired text color */
   @apply focus-visible:!ring-greenT;
 }
+
+input[type='date'] {
+  padding-left: 10px; /* Adjust the left padding as needed */
+  padding-right: 40px; /* Adjust the right padding as needed to make space for the icon */
+  position: relative;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  position: absolute;
+  right: 10px; /* Adjust the right position as needed */
+  top: 50%;
+  padding-left: 40px; /* Adjust the padding as needed */
+  padding-right: 40px; /* Adjust the padding as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  @apply dark:text-blackT text-blackT;
+}
+
+.recharts-tooltip-label {
+  @apply fill-blackT text-blackT stroke-black;
+}

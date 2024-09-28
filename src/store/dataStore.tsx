@@ -17,16 +17,16 @@ interface IncomeExpenseData {
   deleteEntry: (id: string) => Promise<{ status: number; error?: string }>;
 }
 
-const mockData: IncomeExpenseEntry[] = [
-  { id: 'abcsdd', date: '2024-09-01', type: 'income', category: 'Salary', amount: 5000 },
-  { id: 'asdscsdd', date: '2024-09-02', type: 'expense', category: 'Rent', amount: 1000 },
-  { id: 'xyz123', date: '2024-09-03', type: 'income', category: 'Freelance', amount: 1500 },
-  { id: 'lmn456', date: '2024-09-04', type: 'expense', category: 'Groceries', amount: 300 },
-  { id: 'pqr789', date: '2024-09-05', type: 'income', category: 'Investment', amount: 2000 },
-  { id: 'stu012', date: '2024-09-06', type: 'expense', category: 'Utilities', amount: 150 },
-  { id: 'vwx345', date: '2024-09-07', type: 'income', category: 'Bonus', amount: 800 },
-  { id: 'abc678', date: '2024-09-08', type: 'expense', category: 'Entertainment', amount: 200 },
-];
+// const mockData: IncomeExpenseEntry[] = [
+//   { id: 'abcsdd', date: '2024-09-01', type: 'income', category: 'Salary', amount: 5000 },
+//   { id: 'asdscsdd', date: '2024-09-02', type: 'expense', category: 'Rent', amount: 1000 },
+//   { id: 'xyz123', date: '2024-09-03', type: 'income', category: 'Freelance', amount: 1500 },
+//   { id: 'lmn456', date: '2024-09-04', type: 'expense', category: 'Groceries', amount: 300 },
+//   { id: 'pqr789', date: '2024-09-05', type: 'income', category: 'Investment', amount: 2000 },
+//   { id: 'stu012', date: '2024-09-06', type: 'expense', category: 'Utilities', amount: 150 },
+//   { id: 'vwx345', date: '2024-09-07', type: 'income', category: 'Bonus', amount: 800 },
+//   { id: 'abc678', date: '2024-09-08', type: 'expense', category: 'Entertainment', amount: 200 },
+// ];
 
 export const useIncomeExpenseStore = create<IncomeExpenseData>()((set) => ({
   entries: [],
