@@ -151,7 +151,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ handleSignUpForm, isLoading, er
         )}
       </div>
       <div className='ml-1'>
-        <p className='text-sm text-red-500 '>{error}</p>
+        <p className='text-sm text-red-500 dark:text-red-500 '>{error}</p>
       </div>
 
       <div className=''>

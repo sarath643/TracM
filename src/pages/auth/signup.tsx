@@ -41,7 +41,7 @@ const SignUp: React.FC<SignupProps> = ({ onSwitch }) => {
           setTimeout(() => {
             CustomToast(`Welcome ${fullName}!`, 'success');
           }, 2000);
-          navigate('/home');
+          navigate('/dashboard');
         } catch (error) {
           console.log(error);
           setFormApiError((error as Error)?.message);
@@ -104,7 +104,7 @@ const SignUp: React.FC<SignupProps> = ({ onSwitch }) => {
         <span>Sign Up with Google</span>
       </Button>
 
-      {error && <p className='my-6 text-sm text-red-500 '>{error}</p>}
+      {error && <p className='my-6 text-sm text-red-500 dark:text-red-500 '>{error}</p>}
 
       <div className='pt-5'>
         <div className='flex items-center justify-end gap-2 text-sm text-right'>

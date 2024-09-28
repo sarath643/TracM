@@ -30,11 +30,11 @@
 }
 
 html {
-  @apply bg-black;
+  /* @apply bg-white  dark:bg-black; */
 }
 
 body {
-  @apply bg-black;
+  @apply bg-white  dark:bg-black;
 }
 
 p {

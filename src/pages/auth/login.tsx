@@ -169,7 +169,7 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
           )}
         </div>
         <div className=' ml-1 min-h-[1rem]'>
-          <p className='text-sm text-red-500 '>{apiError}</p>
+          <p className='text-sm text-red-500 dark:text-red-500 '>{apiError}</p>
         </div>
 
         <div className=''>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CustomModal from './customModal';
+import CustomModal from './customInputModal';
 import { auth, db } from '@/firebase/config';
 import { isEmptyValue } from '@/utils/validation';
 import { doc, setDoc } from 'firebase/firestore';
@@ -47,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({ isComplete }) => {
         }, 2000);
         setShowPopup(false);
         setIsLoading(false);
-        navigate('/home');
+        navigate('/dashboard');
       } catch (error) {
         console.error('Error updating profile:', error);
         setError((error as Error)?.message);
@@ -60,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ isComplete }) => {
   };
 
   return (
-    <div className='absolute bottom-0 '>
+    <div className='relative'>
       <footer className='flex items-center justify-center w-screen h-10 px-10 bg-gray-100 sm:h-12 sm:justify-end dark:bg-gray-900'>
         <p className='text-sm text-gray-500 dark:text-gray-400'>
           &copy;

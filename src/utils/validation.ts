@@ -42,3 +42,29 @@ export const validateField = (name: string, value: string) => {
 
   return error;
 };
+
+export const validateEntryFields = (name: string, value: string | number) => {
+  let error = '';
+
+  if (typeof value === 'number') value = value.toString();
+
+  switch (name) {
+    case 'amount':
+      error = isEmptyValue(value, name);
+      if (!error) {
+        error = parseInt(value) <= 0 ? 'Amount must be greater than 0' : '';
+      }
+      break;
+
+    case 'date':
+      error = isEmptyValue(value, name);
+      break;
+    case 'type':
+      error = isEmptyValue(value, name);
+      break;
+    case 'category':
+      error = isEmptyValue(value, name);
+      break;
+  }
+  return error;
+};

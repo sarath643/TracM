@@ -15,7 +15,7 @@ interface CustomModalProps {
   error: string;
 }
 
-const CustomModal: React.FC<CustomModalProps> = ({
+const CustomInputModal: React.FC<CustomModalProps> = ({
   isOpen,
   onClose,
   onContinue,
@@ -109,4 +109,4 @@ const CustomModal: React.FC<CustomModalProps> = ({
   );
 };
 
-export default CustomModal;
+export default CustomInputModal;

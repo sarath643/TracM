@@ -8,7 +8,7 @@ interface CustomInputProps {
   id: string;
   name: string;
   value?: string | number;
-  placeholder: string;
+  placeholder?: string;
   className?: string;
   label?: string;
   required?: boolean;
@@ -41,7 +41,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
       <div className='flex flex-col w-full'>
         <label htmlFor={props.id} className='text-sm font-medium text-blackT dark:text-white'>
           {label}
-          {required && <span className='text-red-500'>*</span>}
+          {required && <span className='text-red-500 dark:text-red-500'>*</span>}
         </label>
 
         <div className='relative mt-1 sm:mt-2 group/icon'>

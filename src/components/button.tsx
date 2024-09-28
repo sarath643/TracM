@@ -7,15 +7,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-greenT text-blackT shadow hover:bg-opacity-70 disabled:hover:bg-opacity-20',
-        accent: 'bg-greenT text-blackT shadow hover:bg-opacity-70 disabled:hover:bg-opacity-20',
-        accent_outline:
-          'bg-greenT text-blackT shadow hover:bg-opacity-70 disabled:hover:bg-opacity-20',
+        default: 'bg-greenT text-white shadow hover:bg-opacity-70 disabled:hover:bg-opacity-20',
+        accent: 'bg-greenT text-white shadow hover:bg-opacity-70 disabled:hover:bg-opacity-20',
+        outline: 'bg-greenT text-white shadow hover:bg-opacity-70 disabled:hover:bg-opacity-20',
+        cancel: 'text-white bg-gray-500  shadow hover:bg-opacity-70',
       },
       size: {
-        default: 'h-9 px-4 py-2',
+        default: 'h-10 px-4 py-2',
         sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-10 rounded-md px-8',
+        lg: 'h-12 rounded-md px-8',
         icon: 'h-9 w-9',
       },
     },
