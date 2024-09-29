@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: expense-tracker
+    env: docker
+    buildCommand: docker build -t expense-tracker .
+    startCommand: docker run -p $PORT:3000 expense-tracker
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
