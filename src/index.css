@@ -73,5 +73,5 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 .recharts-tooltip-label {
-  @apply fill-blackT text-blackT stroke-black;
+  @apply fill-blackT !text-blackT dark:!text-black stroke-black;
 }

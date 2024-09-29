@@ -5,8 +5,10 @@ export interface AppConfig {
   appName: string;
 }
 
-const API_DOMAIN = 'localhost:3000';
+// const API_DOMAIN = 'localhost:3001';
+// const API_URL = `http://${API_DOMAIN}`;
 
+const API_DOMAIN = 'tracm-hmltxgo2v-saraths-projects-6bb1a977.vercel.app';
 const API_URL = `https://${API_DOMAIN}`;
 
 export const appConfig: AppConfig = {
