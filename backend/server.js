@@ -13,7 +13,7 @@ app.use(express.json());
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-app.post('/api/generate-report/', async (req, res) => {
+app.post('/api/generate-report', async (req, res) => {
   try {
     const { data } = req.body;
 
@@ -51,5 +51,5 @@ app.post('/api/generate-report/', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// const PORT = process.env.PORT || 3001;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

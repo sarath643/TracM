@@ -15,7 +15,7 @@ interface AIAnalysisReport {
 
 const generateReportAI = async (financialData: Entry[]) => {
   try {
-    const response = await fetch(appConfig.apiUrl + '/api/generate-report/', {
+    const response = await fetch(appConfig.apiUrl + '/api/generate-report', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
