@@ -6,17 +6,21 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "vercel-build": "vite build",
+    "vercel-build": "bun run build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.20.0",
     "@headlessui/react": "^2.1.8",
     "@heroicons/react": "^2.1.5",
     "autoprefixer": "^10.4.20",
     "cargo": "^0.8.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
     "firebase": "^10.13.2",
     "framer-motion": "^11.7.0",
     "lucide-react": "^0.446.0",
