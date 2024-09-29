@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: expense-tracker
+    name: tracm
     env: docker
-    buildCommand: docker build -t expense-tracker .
-    startCommand: docker run -p $PORT:3000 expense-tracker
+    buildCommand: docker build -t tracm .
+    startCommand: docker run -p $PORT:3000 tracm
     envVars:
       - key: NODE_ENV
         value: production
