@@ -71,8 +71,11 @@ const ReportAI = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    handleGenerateReport(entries);
-    window.scrollTo(0, 0);
+    const fetchData = async () => {
+      await handleGenerateReport(entries);
+      window.scrollTo(0, 0);
+    };
+    fetchData();
   }, [entries]);
 
   const [aiReport, setAIReport] = useState<AIAnalysisReport | null>(null);
