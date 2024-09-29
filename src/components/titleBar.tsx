@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GiTakeMyMoney } from 'react-icons/gi';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebase/config';
