@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:backend": "tsc -p backend/tsconfig.json",
-    "vercel-build": "bun run build && bun run build:backend",
+    "vercel-build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
