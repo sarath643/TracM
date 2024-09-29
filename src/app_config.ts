@@ -5,11 +5,11 @@ export interface AppConfig {
   appName: string;
 }
 
-// const API_DOMAIN = 'localhost:3001';
-// const API_URL = `http://${API_DOMAIN}`;
+const API_DOMAIN = 'localhost:3001';
+const API_URL = `http://${API_DOMAIN}`;
 
-const API_DOMAIN = import.meta.env.VITE_API_DOMAIN;
-const API_URL = `https://${API_DOMAIN}`;
+// const API_DOMAIN = import.meta.env.VITE_API_DOMAIN;
+// const API_URL = `https://${API_DOMAIN}`;
 
 export const appConfig: AppConfig = {
   appName: 'Expense Tracker',

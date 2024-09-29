@@ -13,7 +13,7 @@ app.use(express.json());
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-app.post('/generate-report', async (req, res) => {
+app.post('/api/generate-report/', async (req, res) => {
   try {
     const { data } = req.body;
 
