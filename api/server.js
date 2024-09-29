@@ -9,12 +9,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Initialize Gemini AI
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 app.post('/api/generate-report', async (req, res) => {
   try {
     const { data } = req.body;
+
     const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
     const prompt = `As a financial advisor, analyze this financial data and provide a personalized summary, identifying areas where expenses can be managed better. The amounts are shown in Indian Rupees. Offer specific recommendations to improve financial behavior and savings. Here is the data: ${JSON.stringify(
@@ -48,8 +50,6 @@ app.post('/api/generate-report', async (req, res) => {
     res.status(500).json({ error: 'Failed to generate report' });
   }
 });
-
-export default app;
 
 // const PORT = process.env.PORT || 3001;
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
