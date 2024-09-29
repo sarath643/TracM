@@ -8,7 +8,7 @@ export interface AppConfig {
 // const API_DOMAIN = 'localhost:3001';
 // const API_URL = `http://${API_DOMAIN}`;
 
-const API_DOMAIN = 'tracm-hmltxgo2v-saraths-projects-6bb1a977.vercel.app';
+const API_DOMAIN = import.meta.env.VITE_API_DOMAIN;
 const API_URL = `https://${API_DOMAIN}`;
 
 export const appConfig: AppConfig = {
