@@ -176,18 +176,24 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className='relative flex min-h-screen pt-16 pb-10 sm:pt-24 w-screeen'>
+    <div className='relative flex w-screen min-h-screen pt-16 pb-10 sm:pt-24'>
       <div className='w-full mx-auto space-y-4 transition-colors duration-200 bg-white max-w-7xl dark:bg-black '>
         <div className='p-4 text-gray-900 dark:text-white'>
-          <SummaryCards transactions={filteredEntries} filter={timeFilter.label} />
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
+            <SummaryCards
+              transactions={filteredEntries}
+              filter={timeFilter.label}
+              className='col-span-1 md:col-span-2'
+            />
 
-          <div className='flex justify-center w-full mt-4'>
-            <RingButton
-              onClick={handleGenerateReport}
-              borderRadius='1rem'
-              className='h-12 text-black bg-white dark:bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800'>
-              Generate AI Report
-            </RingButton>
+            <div className='flex items-end justify-center w-full col-span-1 mt-4 md:justify-end'>
+              <RingButton
+                onClick={handleGenerateReport}
+                borderRadius='1rem'
+                className='h-12 text-black bg-white dark:bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800'>
+                Generate AI Report
+              </RingButton>
+            </div>
           </div>
 
           <h1 className='my-5 text-xl font-bold sm:text-2xl'>Income and Expense Overview </h1>

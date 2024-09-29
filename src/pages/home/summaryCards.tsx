@@ -5,6 +5,7 @@ import { Entry } from '.';
 interface SummaryProps {
   transactions: Entry[];
   filter: string;
+  className?: string;
 }
 
 const Card: React.FC<{ title: string; amount: number; icon: React.ReactNode; color: string }> = ({
@@ -22,7 +23,7 @@ const Card: React.FC<{ title: string; amount: number; icon: React.ReactNode; col
   </div>
 );
 
-const SummaryCards: React.FC<SummaryProps> = ({ transactions, filter }) => {
+const SummaryCards: React.FC<SummaryProps> = ({ transactions, filter, className }) => {
   const totalIncome = transactions
     .filter((t) => t.type === 'income')
     .reduce((sum, t) => sum + t.amount, 0);
@@ -32,7 +33,7 @@ const SummaryCards: React.FC<SummaryProps> = ({ transactions, filter }) => {
     .reduce((sum, t) => sum + t.amount, 0);
 
   return (
-    <div className='grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2'>
+    <div className={`grid max-w-5xl  grid-cols-1 gap-6 sm:grid-cols-2 ${className}`}>
       <Card
         title={`Total Income this ${filter}`}
         amount={totalIncome}

@@ -6,6 +6,7 @@ import CustomToast from '@/components/customToast';
 import { useNavigate } from 'react-router-dom';
 import { CustomDotLoader } from '@/components/loaders';
 import { refactorTextContent } from '@/utils/validation';
+import { appConfig } from '@/app_config';
 
 interface AIAnalysisReport {
   summary: string;
@@ -14,7 +15,7 @@ interface AIAnalysisReport {
 
 const generateReportAI = async (financialData: Entry[]) => {
   try {
-    const response = await fetch('http://localhost:3001/generate-report', {
+    const response = await fetch(appConfig.apiUrl + '/generate-report', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -124,7 +125,7 @@ const ReportAI = () => {
       </div>
     </div>
   ) : (
-    <div className='relative flex min-h-screen pt-16 pb-10 sm:pt-24 w-screeen'>
+    <div className='relative flex w-screen min-h-screen pt-16 pb-10 sm:pt-24'>
       <div className='w-full mx-auto space-y-4 transition-colors duration-200 bg-white max-w-7xl dark:bg-black '>
         <div className='p-4 text-gray-900 sm:p-10 dark:text-white'>
           <div className='grid w-full max-w-3xl mx-auto space-y-4 sm:space-y-10'>

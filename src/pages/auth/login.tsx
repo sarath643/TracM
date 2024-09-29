@@ -138,7 +138,14 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
 
   return (
     <div className='mb-6 '>
-      <h2 className='text-2xl font-bold text-center text-gray-900 dark:text-white'>Login</h2>
+      <div className='flex items-baseline justify-center'>
+        <h2 className='text-2xl font-bold text-center text-gray-900 dark:text-white'>Login</h2>
+        <span className='px-2 text-gray-900 dark:text-white '>to</span>
+      </div>
+
+      <p className='mt-3 text-xl font-bold text-center text-gray-800'>
+        Track your <span className=' text-greenT'>Money</span>{' '}
+      </p>
 
       <form onSubmit={handleSubmit} className='space-y-1'>
         <div>
@@ -174,7 +181,7 @@ const Login: React.FC<LoginProps> = ({ onSwitch }) => {
             </span>
           )}
         </div>
-        <div className='ml-1 min-h-1'>
+        <div className='ml-1 min-h-[1rem]'>
           <p className='text-sm text-red-500 dark:text-red-500 '>{apiError}</p>
         </div>
 
