@@ -49,7 +49,7 @@ export function RingButton({
 
       <div
         className={`
-          'relative  dark:bg-[linear-gradient(110deg,#000103,45%,#50c060,55%,#000103)] bg-[linear-gradient(110deg,#e5e7eb,45%,#50c060,55%,#e5e7eb)] bg-[length:200%_100%] px-6 font-medium transition-colors 
+          'relative  dark:bg-[linear-gradient(110deg,#000103,45%,#2D3748,55%,#000103)] bg-[linear-gradient(110deg,#e5e7eb,45%,#fff,55%,#e5e7eb)] bg-[length:200%_100%] px-6 font-medium transition-colors 
           focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 border dark:border-slate-800 border-slate-300
           backdrop-blur-xl text-black dark:text-white flex items-center justify-center w-full h-full text-sm antialiased animate-shimmer
             ${className}

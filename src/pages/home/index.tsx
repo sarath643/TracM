@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 
-import { MoveUp, MoveDown, Trash2, Plus, Minus, ChevronsUpDown } from 'lucide-react';
+import { MoveUp, MoveDown, Trash2, Plus, Minus, ChevronsUpDown, Info } from 'lucide-react';
 import VerifyModal from '@/components/verifyModal';
 import { Button } from '@/components/button';
 import { CustomCheckbox } from '@/components/checkbox';
@@ -186,13 +186,19 @@ const Dashboard: React.FC = () => {
               className='col-span-1 md:col-span-2'
             />
 
-            <div className='flex items-end justify-center w-full col-span-1 mt-4 md:justify-end'>
+            <div className='flex flex-col items-end justify-center w-full col-span-1 mt-4 md:justify-end'>
               <RingButton
                 onClick={handleGenerateReport}
                 borderRadius='1rem'
                 className='h-12 text-black bg-white dark:bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800'>
                 Generate AI Report
               </RingButton>
+              {entryData && entryData.length > 5 && (
+                <p className='flex items-center justify-center w-full gap-1 text-center text-xxxs'>
+                  <Info className='w-2 h-2' />
+                  Atleast need 5 entries
+                </p>
+              )}
             </div>
           </div>
 
