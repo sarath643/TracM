@@ -16,12 +16,6 @@ export default defineConfig({
     outDir: 'dist',
   },
   server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
+    port: 3000, // or any port you prefer for the frontend
   },
 });
