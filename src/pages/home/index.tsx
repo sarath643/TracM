@@ -186,7 +186,7 @@ const Dashboard: React.FC = () => {
               className='col-span-1 md:col-span-2'
             />
 
-            <div className='flex flex-col items-end justify-center w-full col-span-1 mt-4 md:justify-end'>
+            <div className='flex flex-col items-center justify-center w-full col-span-1 mt-4 sm:items-end md:justify-end'>
               <div>
                 <RingButton
                   onClick={handleGenerateReport}
