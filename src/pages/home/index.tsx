@@ -187,18 +187,20 @@ const Dashboard: React.FC = () => {
             />
 
             <div className='flex flex-col items-end justify-center w-full col-span-1 mt-4 md:justify-end'>
-              <RingButton
-                onClick={handleGenerateReport}
-                borderRadius='1rem'
-                className='h-12 text-black bg-white dark:bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800'>
-                Generate AI Report
-              </RingButton>
-              {entryData && entryData.length > 5 && (
-                <p className='flex items-center justify-center w-full gap-1 text-center text-xxxs'>
-                  <Info className='w-2 h-2' />
-                  Atleast need 5 entries
-                </p>
-              )}
+              <div>
+                <RingButton
+                  onClick={handleGenerateReport}
+                  borderRadius='1rem'
+                  className='h-12 text-black bg-white dark:bg-slate-900 dark:text-white border-neutral-200 dark:border-slate-800'>
+                  Generate AI Report
+                </RingButton>
+                {entryData && entryData.length <= 4 && (
+                  <p className='flex items-center justify-center w-full gap-1 text-center text-xxxs'>
+                    <Info className='w-2 h-2' />
+                    Atleast need 5 entries
+                  </p>
+                )}
+              </div>
             </div>
           </div>
 
